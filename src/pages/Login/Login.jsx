@@ -1,13 +1,28 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Login = () => {
+  const [error, setError] = useState("");
+  const navigate = useNavigate("");
+  const { loginUser } = useContext(AuthContext);
+
+  // handle login
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
+
+    // user login
+    loginUser(email, password)
+      .then(() => {
+        // user redirect home page
+        navigate("/");
+      })
+      .catch((e) => {
+        setError(e.message);
+      });
   };
 
   return (
@@ -34,6 +49,11 @@ const Login = () => {
           required
         />
         <input value="Login" type="submit" className="btn btn-info" />
+
+        {/* show  error message */}
+        <p className="mt-2 text-center text-red-400">{error}</p>
+
+        {/* user redirect register page */}
         <div>
           <p className="mt-2 border border-gray-300 p-2 rounded text-center">
             New user{" "}
