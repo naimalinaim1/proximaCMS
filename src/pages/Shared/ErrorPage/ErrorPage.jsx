@@ -15,7 +15,9 @@ const ErrorPage = () => {
           <p className="text-lg mb-4">
             We're sorry, but the page you requested could not be found.
           </p>
-          <p className="text-lg mb-4">{error.statusText || error.message}</p>
+          <p className="text-lg mb-4 text-red-500">
+            {error.statusText || error.message}
+          </p>
           <Link to="/">
             <button className="btn btn-primary text-white font-semibold">
               Go back to home
