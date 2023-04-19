@@ -6,6 +6,12 @@ import ErrorPage from "../pages/Shared/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
 import DefaultHome from "../pages/Home/DefaultHome/DefaultHome";
 import Profile from "../pages/Home/Profile/Profile";
+import ChangePassword from "../pages/Home/ChangePassword/ChangePassword";
+import Setting from "../pages/Home/Setting/Setting";
+import Logout from "../pages/Shared/Logout/Logout";
+import Activity from "../pages/Home/Activity/Activity";
+import UserHelpAndSupport from "../pages/Home/UserHelpAndSupport/UserHelpAndSupport";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
   {
@@ -15,7 +21,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Home />,
+        element: (
+          <PrivateRoute>
+            <Home />
+          </PrivateRoute>
+        ),
         children: [
           {
             path: "/",
@@ -24,6 +34,26 @@ const router = createBrowserRouter([
           {
             path: "/profile",
             element: <Profile />,
+          },
+          {
+            path: "/change-password",
+            element: <ChangePassword />,
+          },
+          {
+            path: "/settings",
+            element: <Setting />,
+          },
+          {
+            path: "/activity",
+            element: <Activity />,
+          },
+          {
+            path: "/help",
+            element: <UserHelpAndSupport />,
+          },
+          {
+            path: "/logout",
+            element: <Logout />,
           },
         ],
       },
