@@ -1,14 +1,45 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Register = () => {
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+  const { createUser, updateUserProfile } = useContext(AuthContext);
+
+  // handle register
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(name, email, password);
+
+    if (password.length < 6) {
+      setError("Password must be 6 character...");
+      return;
+    }
+
+    // clear previous error
+    setError("");
+
+    // create  user
+    createUser(email, password)
+      .then((res) => {
+        const user = res.user;
+        // user profile update
+        updateUserProfile(user, name)
+          .then(() => {
+            // go to home page
+            navigate("/");
+          })
+          .catch((e) => {
+            setError(e.message);
+          });
+      })
+      .catch((e) => {
+        setError(e.message);
+      });
   };
 
   return (
@@ -42,6 +73,11 @@ const Register = () => {
           required
         />
         <input value="Register" type="submit" className="btn btn-primary" />
+
+        {/* show  error message */}
+        <p className="mt-2 text-center text-red-400">{error}</p>
+
+        {/* user redirect login page */}
         <div>
           <p className="mt-2 border border-gray-300 p-2 rounded text-center">
             Already Register{" "}

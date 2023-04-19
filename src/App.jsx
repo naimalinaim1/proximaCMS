@@ -1,12 +1,13 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
+import Header from "./pages/Shared/Header/Header";
 
 const App = () => {
   return (
-    <div>
-      <h3>app</h3>
+    <>
+      <Header />
       <Outlet />
-    </div>
+    </>
   );
 };
 
