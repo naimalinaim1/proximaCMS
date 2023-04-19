@@ -9,7 +9,7 @@ const ActiveLink = ({ to, children }) => {
         className={({ isActive }) =>
           isActive
             ? "text-blue-400 nav-link font-medium"
-            : "nav-link font-medium"
+            : "nav-link font-medium hover:text-blue-400"
         }
       >
         {children}

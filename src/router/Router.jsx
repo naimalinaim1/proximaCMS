@@ -4,6 +4,8 @@ import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
 import ErrorPage from "../pages/Shared/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
+import DefaultHome from "../pages/Home/DefaultHome/DefaultHome";
+import Profile from "../pages/Home/Profile/Profile";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +16,16 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        children: [
+          {
+            path: "/",
+            element: <DefaultHome />,
+          },
+          {
+            path: "/profile",
+            element: <Profile />,
+          },
+        ],
       },
       {
         path: "/register",
