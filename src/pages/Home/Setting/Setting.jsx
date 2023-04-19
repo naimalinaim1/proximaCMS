@@ -16,7 +16,7 @@ const Setting = () => {
   };
 
   return (
-    <form className="max-w-[80%]  p-6 bg-white rounded-lg shadow-md">
+    <form className="sm:max-w-[80%] mx-auto md:mx-0 p-6 bg-white rounded-lg shadow-md">
       <h2 className="text-2xl font-semibold mb-4">Delete Account</h2>
       {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
       <div className="mb-4">

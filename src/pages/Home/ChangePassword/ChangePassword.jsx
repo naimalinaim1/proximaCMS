@@ -25,7 +25,7 @@ const ChangePassword = () => {
   return (
     <form
       onSubmit={handlePasswordChange}
-      className="max-w-[80%] p-6 bg-white rounded-lg shadow-md"
+      className="sm:max-w-[80%] mx-auto md:mx-0 p-6 bg-white rounded-lg shadow-md"
     >
       <h2 className="text-2xl font-semibold mb-4">Change Password</h2>
       {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
