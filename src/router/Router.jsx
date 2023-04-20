@@ -17,6 +17,7 @@ import DefaultDashboard from "../pages/Dashboard/DefaultDashboard/DefaultDashboa
 import DHeader from "../pages/Dashboard/DHeader/DHeader";
 import Preview from "../pages/Dashboard/Preview/Preview";
 import DForm from "../pages/Dashboard/DForm/DForm";
+import DownloadProject from "../pages/Dashboard/DownloadProject/DownloadProject";
 
 const router = createBrowserRouter([
   {
@@ -77,6 +78,10 @@ const router = createBrowserRouter([
           {
             path: "form",
             element: <DForm />,
+          },
+          {
+            path: "download",
+            element: <DownloadProject />,
           },
         ],
       },

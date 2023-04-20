@@ -7,8 +7,7 @@ const Preview = () => {
 
   const webPreviewCode = header + form;
   document.body.innerHTML = webPreviewCode;
-
-  return "";
+  return <></>;
 };
 
 export default Preview;
