@@ -12,6 +12,11 @@ import Logout from "../pages/Shared/Logout/Logout";
 import Activity from "../pages/Home/Activity/Activity";
 import UserHelpAndSupport from "../pages/Home/UserHelpAndSupport/UserHelpAndSupport";
 import PrivateRoute from "./PrivateRoute";
+import Dashboard from "../pages/Dashboard/Dashboard";
+import DefaultDashboard from "../pages/Dashboard/DefaultDashboard/DefaultDashboard";
+import DHeader from "../pages/Dashboard/DHeader/DHeader";
+import Preview from "../pages/Dashboard/Preview/Preview";
+import DForm from "../pages/Dashboard/DForm/DForm";
 
 const router = createBrowserRouter([
   {
@@ -56,6 +61,28 @@ const router = createBrowserRouter([
             element: <Logout />,
           },
         ],
+      },
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+        children: [
+          {
+            path: "",
+            element: <DefaultDashboard />,
+          },
+          {
+            path: "header",
+            element: <DHeader />,
+          },
+          {
+            path: "form",
+            element: <DForm />,
+          },
+        ],
+      },
+      {
+        path: "/preview",
+        element: <Preview />,
       },
       {
         path: "/register",
