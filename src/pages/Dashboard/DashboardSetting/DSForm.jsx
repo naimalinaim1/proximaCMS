@@ -25,6 +25,10 @@ const DSForm = () => {
     handleClick();
   };
 
+  const saveCode = () => {
+    saveLocalStorage();
+  };
+
   //   handle preview page
   const handleClick = () => {
     window.open("/preview", "_blank");
@@ -53,6 +57,9 @@ const DSForm = () => {
         className="p-2 border rounded-md"
       />
       <div>
+        <button onClick={saveCode} className="btn btn-success mr-4">
+          Save Code
+        </button>
         <button onClick={saveAndRun} className="btn btn-error">
           Save and Run Code
         </button>

@@ -1,67 +1,83 @@
 import React, { createContext, useEffect, useRef, useState } from "react";
-import DSHeader from "../DashboardSetting/DSHeader";
+import DSHeader from "./DSHeader";
+import { getSaveHeaderInfo, saveHeader } from "../utilities";
 
 export const DSHContext = createContext(null);
 
 const DHeader = () => {
-  const headerRef = useRef();
-  const [companyName, setCompanyName] = useState("Company Name");
-  const [links, setLinks] = useState(
-    '<a href="/">Home</a><a href="/about">About</a><a href="/service">Service</a>'
-  );
-  const [fakeLink, setFakeLink] = useState(["Home", "About", "Service"]);
+  const makeHeader = getSaveHeaderInfo();
+  const [header, setHeader] = useState(makeHeader);
 
   // change company logo
   const changeCompanyName = (e) => {
-    setCompanyName(e.target.value);
+    const company = e.target.value;
+    setHeader({ ...header, logoName: company });
   };
 
-  const [linkName, setLinkName] = useState("");
-  const [linkAdd, setLinkAdd] = useState("");
-
-  //   create link
-  const createLinkName = (e) => {
-    const link = e.target.value;
-    setLinkName(link);
+  const addNewLinkWithBtn = () => {
+    setHeader((prevState) => ({
+      ...prevState,
+      linkName: [...prevState.linkName, ""],
+    }));
   };
 
-  //   set link address
-  const setLinkAddress = (e) => {
-    const linkAddress = e.target.value;
-    setLinkAdd(linkAddress);
+  // change link name
+  const changeLinkName = (index, name, address) => {
+    const newLinkAction = [...header.linkAction];
+    const newLinkName = [...header.linkName];
+    const newHeaderLink = [...header.headerLink];
+
+    const linkTemplate = `<a href='${address}'>${name}</a>`;
+    newLinkName[index] = name;
+    newLinkAction[index] = address;
+    newHeaderLink[index] = linkTemplate;
+
+    const newHeader = {
+      ...header,
+      headerLink: newHeaderLink,
+      linkAction: newLinkAction,
+      linkName: newLinkName,
+    };
+    setHeader(newHeader);
   };
 
-  //   added new link
-  const addNewLink = () => {
-    const createLink = links + `<a href="${linkAdd || "/"}">${linkName}</a>`;
-    if (linkName) {
-      setLinks(createLink);
-      setFakeLink([...fakeLink, linkName]);
-    }
+  // delete link
+  const deleteLink = (index) => {
+    const previousLinkAction = [...header.linkAction];
+    const previousLinkName = [...header.linkName];
+    previousLinkAction.splice(index, 1);
+    previousLinkName.splice(index, 1);
+    const newHeader = {
+      ...header,
+      linkAction: previousLinkAction,
+      linkName: previousLinkName,
+    };
+    setHeader(newHeader);
   };
 
-  //   save code local storage
-  const saveLocalStorage = () => {
-    const getHeader = headerRef.current.innerHTML;
-    localStorage.setItem("header", getHeader);
-  };
+  // save header
+  useEffect(() => {
+    saveHeader(header);
+  }, [header]);
 
   const DSHInfo = {
+    header,
     changeCompanyName,
-    createLinkName,
-    setLinkAddress,
-    addNewLink,
-    saveLocalStorage,
+    changeLinkName,
+    deleteLink,
+    addNewLinkWithBtn,
   };
 
   return (
     <div>
-      <div ref={headerRef}>
+      <div>
         <header className="w-[96%] max-w-[1280px] mx-auto flex justify-between items-center py-6">
-          <div className="font-bold text-xl">{companyName}</div>
+          <div className="font-bold text-xl">{header.logoName}</div>
           <nav className="flex space-x-4">
-            {fakeLink.map((lk, idx) => (
-              <a key={idx}>{lk}</a>
+            {header.linkName.map((lk, idx) => (
+              <a className="cursor-pointer" key={idx}>
+                {lk}
+              </a>
             ))}
           </nav>
         </header>
