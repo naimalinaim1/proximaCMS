@@ -18,6 +18,7 @@ import DHeader from "../pages/Dashboard/DHeader/DHeader";
 import Preview from "../pages/Dashboard/Preview/Preview";
 import DForm from "../pages/Dashboard/DForm/DForm";
 import DownloadProject from "../pages/Dashboard/DownloadProject/DownloadProject";
+import DHero from "../pages/Dashboard/DHero/DHero";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
           {
             path: "header",
             element: <DHeader />,
+          },
+          {
+            path: "hero",
+            element: <DHero />,
           },
           {
             path: "form",

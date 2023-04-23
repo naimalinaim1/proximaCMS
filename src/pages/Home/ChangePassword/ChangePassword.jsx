@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const ChangePassword = () => {
+  const [isShow, setIsShow] = useState(false);
+  const { updateUserPassword } = useContext(AuthContext);
+
   const [errorMessage, setErrorMessage] = useState("");
   const handlePasswordChange = (e) => {
+    setErrorMessage("");
+
     const form = e.target;
-    const currentPassword = form.currentPassword.value;
+    // const currentPassword = form.currentPassword.value;
     const newPassword = form.newPassword.value;
     const confirmNewPassword = form.conNewPassword.value;
 
@@ -15,11 +21,17 @@ const ChangePassword = () => {
       return;
     }
 
-    // Make API request to change password
-    // ...
+    // update user password
+    updateUserPassword(newPassword)
+      .then(() => {
+        alert("Password update successfully");
+      })
+      .catch((e) => {
+        setErrorMessage(e.message);
+      });
 
+    // reset form
     form.reset();
-    setErrorMessage("");
   };
 
   return (
@@ -30,23 +42,11 @@ const ChangePassword = () => {
       <h2 className="text-2xl font-semibold mb-4">Change Password</h2>
       {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
       <div className="mb-4">
-        <label htmlFor="current-password" className="block font-medium mb-2">
-          Current Password
-        </label>
-        <input
-          type="password"
-          id="current-password"
-          className="w-full px-3 py-2 border border-gray-400 rounded-lg"
-          name="currentPassword"
-          required
-        />
-      </div>
-      <div className="mb-4">
         <label htmlFor="new-password" className="block font-medium mb-2">
           New Password
         </label>
         <input
-          type="password"
+          type={isShow ? "text" : "password"}
           id="new-password"
           className="w-full px-3 py-2 border border-gray-400 rounded-lg"
           name="newPassword"
@@ -61,13 +61,19 @@ const ChangePassword = () => {
           Confirm New Password
         </label>
         <input
-          type="password"
+          type={isShow ? "text" : "password"}
           id="confirm-new-password"
           className="w-full px-3 py-2 border border-gray-400 rounded-lg"
           name="conNewPassword"
           required
         />
       </div>
+      <p
+        className="cursor-pointer font-semibold"
+        onClick={() => setIsShow(!isShow)}
+      >
+        {isShow ? "Hide" : "Show"} password
+      </p>
       <div className="flex justify-end">
         <input
           type="submit"

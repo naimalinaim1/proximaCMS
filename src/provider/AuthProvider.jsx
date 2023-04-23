@@ -6,6 +6,7 @@ import {
   updateProfile,
   onAuthStateChanged,
   signOut,
+  updatePassword,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
@@ -52,6 +53,11 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  // update user password
+  const updateUserPassword = (newPassword) => {
+    return updatePassword(user, newPassword);
+  };
+
   /* --------------  firebase auth info end-------------------*/
 
   const info = {
@@ -61,8 +67,9 @@ const AuthProvider = ({ children }) => {
     loginUser,
     singOutUser,
     updateUserProfile,
+    updateUserPassword,
   };
-  console.log(loading);
+
   return <AuthContext.Provider value={info}>{children}</AuthContext.Provider>;
 };
 
