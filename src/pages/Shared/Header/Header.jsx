@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import { Link, NavLink } from "react-router-dom";
 import ActiveLink from "../ActiveLink/ActiveLink";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const Header = () => {
+  const { user } = useContext(AuthContext);
+
   const [isOpen, setIsOpen] = useState(false);
   const handleToggleMenu = () => {
     setIsOpen(!isOpen);
@@ -21,8 +24,14 @@ const Header = () => {
           <ActiveLink to="/">Home</ActiveLink>
           <ActiveLink to="/services">Services</ActiveLink>
           <ActiveLink to="/about">About</ActiveLink>
-          <ActiveLink to="/login">Login</ActiveLink>
-          <ActiveLink to="/register">Register</ActiveLink>
+          {user ? (
+            <ActiveLink to="/logout">Logout</ActiveLink>
+          ) : (
+            <>
+              <ActiveLink to="/login">Login</ActiveLink>
+              <ActiveLink to="/register">Register</ActiveLink>
+            </>
+          )}
         </nav>
       </div>
       <h3

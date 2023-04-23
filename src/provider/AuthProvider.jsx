@@ -35,7 +35,7 @@ const AuthProvider = ({ children }) => {
   const updateUserProfile = (name, imgUrl) => {
     return updateProfile(user, {
       displayName: name,
-      photoURL: imgUrl,
+      photoURL: imgUrl || "https://via.placeholder.com/150",
     });
   };
 

@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../provider/AuthProvider";
+import { updateProfile } from "firebase/auth";
 
 const Register = () => {
   const [error, setError] = useState("");
@@ -28,7 +29,10 @@ const Register = () => {
       .then((res) => {
         const user = res.user;
         // user profile update
-        updateUserProfile(user, name)
+        updateProfile(user, {
+          displayName: name,
+          photoURL: "https://via.placeholder.com/150",
+        })
           .then(() => {
             // go to home page
             navigate("/");
