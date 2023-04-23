@@ -6,7 +6,6 @@ const Profile = () => {
 
   const { user, updateUserProfile } = useContext(AuthContext);
   const { displayName, email, photoURL } = user;
-  console.log(updateUserProfile);
 
   const img = photoURL || "https://via.placeholder.com/150";
   const address = "Dhaka";
@@ -16,18 +15,22 @@ const Profile = () => {
   const handleUpdateUserProfile = (e) => {
     e.preventDefault();
     const form = e.target;
-    const name = form.name.value;
+    const name = form.name.value || displayName;
     const imgUrl = form.imageUrl.value || img;
 
     // some error
-    // updateUserProfile(name, imgUrl)
-    //   .then(() => {
-    //     alert("profile update successful");
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //     setError(e.message);
-    //   });
+    updateUserProfile(name, imgUrl)
+      .then((res) => {
+        alert("profile update successful");
+        // reload page
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+      })
+      .catch((e) => {
+        console.log(e);
+        setError(e.message);
+      });
   };
 
   return (
@@ -71,6 +74,7 @@ const Profile = () => {
           <input
             type="text"
             name="name"
+            defaultValue={displayName}
             placeholder="Your name"
             className="p-2 border rounded-md"
             required
@@ -81,6 +85,7 @@ const Profile = () => {
           </label>
           <input
             type="url"
+            defaultValue={img}
             name="imageUrl"
             placeholder="http://www.example.com/image.jpg"
             className="p-2 border rounded-md"
@@ -89,7 +94,7 @@ const Profile = () => {
           <input
             value="Update Profile"
             type="submit"
-            className="btn-disabled btn btn-info text-white"
+            className="btn btn-info text-white"
           />
 
           {/* show  error message */}

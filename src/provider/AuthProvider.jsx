@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
   };
 
   // update user profile
-  const updateUserProfile = (user, name, imgUrl) => {
+  const updateUserProfile = (name, imgUrl) => {
     return updateProfile(user, {
       displayName: name,
       photoURL: imgUrl,
