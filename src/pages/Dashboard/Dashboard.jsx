@@ -7,7 +7,7 @@ const Dashboard = () => {
     <section className="w-[96%] max-w-[1280px] mx-auto">
       <div className="mt-8 py-8 grid gap-5 grid-cols-12 justify-between">
         <div className="col-span-12 md:col-span-3">
-          <div className="border">
+          <div className="border p-2">
             <DashboardNav />
           </div>
         </div>

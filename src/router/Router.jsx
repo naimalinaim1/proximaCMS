@@ -19,6 +19,8 @@ import Preview from "../pages/Dashboard/Preview/Preview";
 import DForm from "../pages/Dashboard/DForm/DForm";
 import DownloadProject from "../pages/Dashboard/DownloadProject/DownloadProject";
 import DHero from "../pages/Dashboard/DHero/DHero";
+import Services from "../pages/Services/Services";
+import About from "../pages/About/About";
 
 const router = createBrowserRouter([
   {
@@ -89,6 +91,14 @@ const router = createBrowserRouter([
             element: <DownloadProject />,
           },
         ],
+      },
+      {
+        path: "/services",
+        element: <Services />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
       {
         path: "/preview",
