@@ -1,7 +1,8 @@
 import React from "react";
-import { getSaveHeaderInfo, getSaveHeroInfo } from "../utilities";
+import { getSaveHeaderInfo, getSaveHeroInfo, getTitle } from "../utilities";
 
 const Preview = () => {
+  const title = getTitle();
   const header = getSaveHeaderInfo();
   const hero = getSaveHeroInfo();
 
@@ -26,6 +27,7 @@ const Preview = () => {
     </section>`;
 
   const webPreviewCode = completeHeader + completeHero;
+  document.title = title;
   document.body.innerHTML = webPreviewCode;
   return <></>;
 };

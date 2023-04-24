@@ -22,6 +22,7 @@ import DHero from "../pages/Dashboard/DHero/DHero";
 import Services from "../pages/Services/Services";
 import About from "../pages/About/About";
 import ProjectInfo from "../pages/ProjectInfo/ProjectInfo";
+import PrivateDashboardRoute from "./PrivateDashboardRoute";
 
 const router = createBrowserRouter([
   {
@@ -77,19 +78,35 @@ const router = createBrowserRouter([
           },
           {
             path: "header",
-            element: <DHeader />,
+            element: (
+              <PrivateDashboardRoute>
+                <DHeader />
+              </PrivateDashboardRoute>
+            ),
           },
           {
             path: "hero",
-            element: <DHero />,
+            element: (
+              <PrivateDashboardRoute>
+                <DHero />
+              </PrivateDashboardRoute>
+            ),
           },
           {
             path: "form",
-            element: <DForm />,
+            element: (
+              <PrivateDashboardRoute>
+                <DForm />
+              </PrivateDashboardRoute>
+            ),
           },
           {
             path: "download",
-            element: <DownloadProject />,
+            element: (
+              <PrivateDashboardRoute>
+                <DownloadProject />
+              </PrivateDashboardRoute>
+            ),
           },
         ],
       },
