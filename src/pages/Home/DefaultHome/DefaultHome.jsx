@@ -26,7 +26,10 @@ const DefaultHome = () => {
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem
         cupiditate modi sequi sapiente id, porro quas ut at possimus debitis?
       </p>
-      <Link to="/dashboard">
+      <p className="text-lg mb-8 text-gray-600 text-justify font-medium">
+        Please click 'Get Started' button and start your project
+      </p>
+      <Link to="/project-info">
         <button className="btn btn-primary">Get Started</button>
       </Link>
     </div>

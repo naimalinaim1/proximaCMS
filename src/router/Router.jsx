@@ -21,6 +21,7 @@ import DownloadProject from "../pages/Dashboard/DownloadProject/DownloadProject"
 import DHero from "../pages/Dashboard/DHero/DHero";
 import Services from "../pages/Services/Services";
 import About from "../pages/About/About";
+import ProjectInfo from "../pages/ProjectInfo/ProjectInfo";
 
 const router = createBrowserRouter([
   {
@@ -103,6 +104,10 @@ const router = createBrowserRouter([
       {
         path: "/preview",
         element: <Preview />,
+      },
+      {
+        path: "/project-info",
+        element: <ProjectInfo />,
       },
       {
         path: "/register",
