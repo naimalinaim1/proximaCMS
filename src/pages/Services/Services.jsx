@@ -12,7 +12,7 @@ const Services = () => {
   }, []);
 
   return (
-    <section className="w-[96%] max-w-[1100px] mx-auto mb-10">
+    <section className="w-[90%] max-w-[1100px] mx-auto mb-10">
       <h2 className="text-4xl font-bold text-center mt-14 mb-10">
         Explore Our Service
       </h2>

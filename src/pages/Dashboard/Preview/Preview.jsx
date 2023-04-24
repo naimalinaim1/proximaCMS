@@ -1,8 +1,9 @@
 import React from "react";
-import { getSaveHeaderInfo } from "../utilities";
+import { getSaveHeaderInfo, getSaveHeroInfo } from "../utilities";
 
 const Preview = () => {
   const header = getSaveHeaderInfo();
+  const hero = getSaveHeroInfo();
 
   const completeHeader = `
   <header class="w-[96%] max-w-[1280px] mx-auto flex justify-between  py-6">
@@ -14,7 +15,17 @@ const Preview = () => {
   </div>
 </header>`;
 
-  const webPreviewCode = completeHeader;
+  const completeHero = `
+    <section class="mt-12 text-center w-[90%] mx-auto">
+      <h2 class="w-[75%] mx-auto text-5xl font-bold leading-[60px]">
+        ${hero.title}
+      </h2>
+      <p class="text-xl font-light my-5 leading-8 text-justify">${hero.descriptions[0]}</p>
+      <p class="text-xl font-light my-5 leading-8 text-justify">${hero.descriptions[1]}</p>
+      <button class="btn btn-primary">${hero.btnName}</button>
+    </section>`;
+
+  const webPreviewCode = completeHeader + completeHero;
   document.body.innerHTML = webPreviewCode;
   return <></>;
 };

@@ -1,6 +1,5 @@
 import React, { useContext, useState } from "react";
 import { DSHContext } from "../DHeader/DHeader";
-import { Link } from "react-router-dom";
 import AddNewLink from "./AddNewLink";
 
 const DSHeader = () => {
