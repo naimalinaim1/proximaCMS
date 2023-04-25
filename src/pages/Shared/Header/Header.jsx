@@ -23,6 +23,7 @@ const Header = () => {
         >
           <ActiveLink to="/">Home</ActiveLink>
           <ActiveLink to="/services">Services</ActiveLink>
+          <ActiveLink to="/deploy">Deploy</ActiveLink>
           <ActiveLink to="/about">About</ActiveLink>
           {user ? (
             <ActiveLink to="/logout">Logout</ActiveLink>

@@ -23,6 +23,8 @@ import Services from "../pages/Services/Services";
 import About from "../pages/About/About";
 import ProjectInfo from "../pages/ProjectInfo/ProjectInfo";
 import PrivateDashboardRoute from "./PrivateDashboardRoute";
+import Deploy from "../pages/Deploy/Deploy";
+import DeployPreview from "../pages/Deploy/DeployPreview";
 
 const router = createBrowserRouter([
   {
@@ -125,6 +127,14 @@ const router = createBrowserRouter([
       {
         path: "/project-info",
         element: <ProjectInfo />,
+      },
+      {
+        path: "/deploy",
+        element: <Deploy />,
+      },
+      {
+        path: "/deploy/:userName",
+        element: <DeployPreview />,
       },
       {
         path: "/register",
