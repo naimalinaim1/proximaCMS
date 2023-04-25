@@ -17,12 +17,12 @@ const Preview = () => {
 </header>`;
 
   const completeHero = `
-    <section class="mt-16 text-center w-[90%] mx-auto">
+    <section class="mt-16 text-center w-[96%] max-w-[1280px] mx-auto">
       <h2 class="w-[75%] mx-auto text-5xl font-bold leading-[60px]">
         ${hero.title}
       </h2>
-      <p class="text-xl font-light my-6 leading-8 text-justify">${hero.descriptions[0]}</p>
-      <p class="text-xl font-light mb-10 leading-8 text-justify">${hero.descriptions[1]}</p>
+      <p class="text-xl font-light my-6 leading-8">${hero.descriptions[0]}</p>
+      <p class="text-xl font-light mb-10 leading-8">${hero.descriptions[1]}</p>
       <button class="btn btn-primary">${hero.btnName}</button>
     </section>`;
 

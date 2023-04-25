@@ -63,7 +63,7 @@ const DHero = () => {
 
   return (
     <>
-      <div className="mt-12 text-center">
+      <section className="mt-12 w-[96%] max-w-[1280px] mx-auto text-center">
         <h2 className="w-[75%] mx-auto text-5xl font-bold leading-[60px]">
           {hero.title.replace("&lt;", "<").replace("&gt;", ">")}
         </h2>
@@ -74,7 +74,7 @@ const DHero = () => {
         ))}
 
         <button className="btn btn-primary">{hero.btnName}</button>
-      </div>
+      </section>
       <div className="mt-10">
         <DSHeroContext.Provider value={DSHeroInfo}>
           <DSHero />

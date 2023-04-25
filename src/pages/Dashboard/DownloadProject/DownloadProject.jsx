@@ -20,17 +20,19 @@ const DownloadProject = () => {
 
   // create download formate hero
   const getParagraph = hero.descriptions
-    .map((des) => `<p className="text-xl font-light my-5 leading-8">${des}</p>`)
+    .map(
+      (des) => `<p className="text-xl font-light mb-10 leading-8">${des}</p>`
+    )
     .join("");
 
   const makeHero = `
-  <div className="mt-12 text-center">
+  <section class="mt-16 text-center w-[96%] max-w-[1280px] mx-auto">
   <h2 className="w-[75%] mx-auto text-5xl font-bold leading-[60px]">
     ${hero.title}
   </h2>
     ${getParagraph}
   <button className="btn btn-primary">${hero.btnName}</button>
-  </div>`;
+  </section>`;
 
   // complete code
   const completeCode = `
