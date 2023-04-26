@@ -42,10 +42,53 @@ const getDefaultProjectInfo = () => {
     btnName: "Get Started",
   };
 
+  const defaultServices = {
+    title: "Explore Our Services",
+    services: [
+      {
+        id: 1,
+        title: "Web Development",
+        description:
+          "We specialize in building responsive websites that are optimized for performance and user experience. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores asperiores, ducimus, inventore quam possimus odio aut culpa sequi praesentium expedita maiores debitis amet nam reiciendis ad magni, voluptatum natus nesciunt. Aperiam velit eos obcaecati.",
+        price: "$100/hour",
+        duration: "2-4 weeks",
+        btnName: "Explore",
+      },
+      {
+        id: 2,
+        title: "Mobile Development",
+        description:
+          "We develop native and hybrid mobile applications for iOS and Android platforms. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores asperiores, ducimus, inventore quam possimus odio aut culpa sequi praesentium expedita maiores debitis amet nam reiciendis ad magni, voluptatum natus nesciunt. Aperiam velit eos obcaecati.",
+        price: "$120/hour",
+        duration: "4-6 weeks",
+        btnName: "Explore",
+      },
+      {
+        id: 3,
+        title: "Custom ECCE Development",
+        description:
+          "We provide custom ECCE development services to help you create a unique and powerful website. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores asperiores, ducimus, inventore quam possimus odio aut culpa sequi praesentium expedita maiores debitis amet nam reiciendis ad magni, voluptatum natus nesciunt. Aperiam velit eos obcaecati.",
+        price: "$80/hour",
+        duration: "2-3 weeks",
+        btnName: "Explore",
+      },
+      {
+        id: 4,
+        title: "Computer Science Consulting",
+        description:
+          "We offer consulting services to help businesses and organizations with computer science projects and initiatives. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores asperiores, ducimus, inventore quam possimus odio aut culpa sequi praesentium expedita maiores debitis amet nam reiciendis ad magni, voluptatum natus nesciunt. Aperiam velit eos obcaecati.",
+        price: "$150/hour",
+        duration: "1-2 weeks",
+        btnName: "Explore",
+      },
+    ],
+  };
+
   const defaultProject = {
     title: "Blank Title",
     header: defaultHeader,
     hero: defaultHero,
+    service: defaultServices,
   };
 
   return defaultProject;
@@ -110,6 +153,22 @@ const saveHero = (hero) => {
   localStorage.setItem(projectName, JSON.stringify(saveProject));
 };
 
+// get save services section information
+const getSaveServicesInfo = () => {
+  const project = getProjectInfo();
+  const service = project.service;
+  return service;
+};
+
+const saveServices = (services) => {
+  const saveProject = getProjectInfo();
+  const projectName = getCurrentProject();
+
+  // set project services
+  saveProject.service = services;
+  localStorage.setItem(projectName, JSON.stringify(saveProject));
+};
+
 const getForm = () => {
   const form = localStorage.getItem("form");
   return form;
@@ -125,4 +184,6 @@ export {
   getProjectInfo,
   getCurrentProject,
   getTitle,
+  getSaveServicesInfo,
+  saveServices,
 };

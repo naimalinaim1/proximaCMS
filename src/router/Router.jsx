@@ -25,6 +25,7 @@ import ProjectInfo from "../pages/ProjectInfo/ProjectInfo";
 import PrivateDashboardRoute from "./PrivateDashboardRoute";
 import Deploy from "../pages/Deploy/Deploy";
 import DeployPreview from "../pages/Deploy/DeployPreview";
+import DServices from "../pages/Dashboard/DServices/DServices";
 
 const router = createBrowserRouter([
   {
@@ -93,6 +94,10 @@ const router = createBrowserRouter([
                 <DHero />
               </PrivateDashboardRoute>
             ),
+          },
+          {
+            path: "services",
+            element: <DServices />,
           },
           {
             path: "form",

@@ -9,6 +9,7 @@ const DashboardNav = () => {
         <ActiveLink to="/dashboard">Dashboard</ActiveLink>
         <ActiveLink to="header">Header</ActiveLink>
         <ActiveLink to="hero">Hero</ActiveLink>
+        <ActiveLink to="services">Services</ActiveLink>
         <ActiveLink to="form">Form</ActiveLink>
         <ActiveLink to="download">Download Project</ActiveLink>
       </nav>

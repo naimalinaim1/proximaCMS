@@ -71,7 +71,7 @@ const DHeader = () => {
   return (
     <div>
       <div>
-        <header className="w-[96%] max-w-[1280px] mx-auto flex justify-between items-center py-6">
+        <header className="w-[96%] max-w-[1280px] mx-auto flex justify-between items-center pb-6">
           <div className="font-bold text-xl">{header.logoName}</div>
           <nav className="flex space-x-4">
             {header.linkName.map((lk, idx) => (

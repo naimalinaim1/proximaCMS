@@ -63,7 +63,7 @@ const DHero = () => {
 
   return (
     <>
-      <section className="mt-12 w-[96%] max-w-[1280px] mx-auto text-center">
+      <section className="w-[96%] max-w-[1280px] mx-auto text-center">
         <h2 className="w-[75%] mx-auto text-5xl font-bold leading-[60px]">
           {hero.title.replace("&lt;", "<").replace("&gt;", ">")}
         </h2>
