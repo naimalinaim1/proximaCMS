@@ -169,6 +169,14 @@ const saveServices = (services) => {
   localStorage.setItem(projectName, JSON.stringify(saveProject));
 };
 
+// load services data
+const loadServiceData = (id) => {
+  const project = getSaveServicesInfo();
+  const services = project;
+
+  return [services, id];
+};
+
 const getForm = () => {
   const form = localStorage.getItem("form");
   return form;
@@ -186,4 +194,5 @@ export {
   getTitle,
   getSaveServicesInfo,
   saveServices,
+  loadServiceData,
 };

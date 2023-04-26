@@ -26,6 +26,8 @@ import PrivateDashboardRoute from "./PrivateDashboardRoute";
 import Deploy from "../pages/Deploy/Deploy";
 import DeployPreview from "../pages/Deploy/DeployPreview";
 import DServices from "../pages/Dashboard/DServices/DServices";
+import DSServices from "../pages/Dashboard/DServices/DSServices";
+import { loadServiceData } from "../pages/Dashboard/utilities";
 
 const router = createBrowserRouter([
   {
@@ -97,7 +99,20 @@ const router = createBrowserRouter([
           },
           {
             path: "services",
-            element: <DServices />,
+            element: (
+              <PrivateDashboardRoute>
+                <DServices />
+              </PrivateDashboardRoute>
+            ),
+          },
+          {
+            path: "services/editService/:id",
+            element: (
+              <PrivateDashboardRoute>
+                <DSServices />
+              </PrivateDashboardRoute>
+            ),
+            loader: ({ params }) => loadServiceData(params.id),
           },
           {
             path: "form",

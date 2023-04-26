@@ -1,64 +1,21 @@
 import React, { createContext, useEffect, useState } from "react";
-import DSServices from "./DSServices";
 import { getSaveServicesInfo, saveServices } from "../utilities";
 import DSServiceTitle from "./DSServiceTitle";
+import { useNavigate } from "react-router-dom";
 
 export const DSServiceContext = createContext(null);
 
 const DServices = () => {
+  const navigate = useNavigate();
+
   const makeService = getSaveServicesInfo();
   const [services, setServices] = useState(makeService);
   const [serviceItems, setServiceItems] = useState([]);
-  const [editServiceItem, setEditServiceItem] = useState([]);
 
   // change service section title
   const changeSectionTitle = (e) => {
     const title = e.target.value;
     setServices({ ...services, title });
-  };
-
-  const changeServiceItem = (e, option) => {
-    const value = e.target.value;
-    const getEditIndex = editServiceItem[1] - 1;
-    const allServices = services?.services;
-    // get previous services
-    const previousService = allServices[getEditIndex];
-    previousService[option] = value;
-    setServices((prevState) => ({
-      ...prevState,
-      services: allServices,
-    }));
-  };
-
-  // change service title
-  const changeServiceTitle = (e) => {
-    changeServiceItem(e, "title");
-  };
-
-  // change service description
-  const changeServiceDescription = (e) => {
-    changeServiceItem(e, "description");
-  };
-
-  // change service description
-  const changeServicePrice = (e) => {
-    changeServiceItem(e, "price");
-  };
-
-  // change service description
-  const changeServiceDuration = (e) => {
-    changeServiceItem(e, "duration");
-  };
-
-  // change service description
-  const changeServiceBtnName = (e) => {
-    changeServiceItem(e, "btnName");
-  };
-
-  // const edit service
-  const editService = (index) => {
-    const findService = serviceItems.find((item) => item.id === index);
-    setEditServiceItem([findService, index]);
   };
 
   // save services
@@ -77,13 +34,7 @@ const DServices = () => {
 
   const DSServiceInfo = {
     services,
-    editServiceItem: editServiceItem[0],
     changeSectionTitle,
-    changeServiceTitle,
-    changeServiceDescription,
-    changeServicePrice,
-    changeServiceDuration,
-    changeServiceBtnName,
   };
 
   return (
@@ -113,7 +64,7 @@ const DServices = () => {
                     {/* edit service */}
                     <span
                       className="text-info hover:text-blue-500 cursor-pointer w-20"
-                      onClick={() => editService(index + 1)}
+                      onClick={() => navigate(`${`editService/${index}`}`)}
                     >
                       Edit
                     </span>
@@ -126,13 +77,6 @@ const DServices = () => {
       <div className="mt-12">
         <DSServiceContext.Provider value={DSServiceInfo}>
           <DSServiceTitle />
-          {editServiceItem[0] ? (
-            <DSServices />
-          ) : (
-            <p className="text-lg text-info font-medium  w-[98%]  border border-gray-200 p-7 rounded-lg mb-10">
-              Please select a service and edit
-            </p>
-          )}
         </DSServiceContext.Provider>
         <button onClick={previewCode} className="btn btn-error mt-6">
           View code
