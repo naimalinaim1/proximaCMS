@@ -29,7 +29,7 @@ const DownloadProject = () => {
     ${hero.title}
   </h2>
     ${getParagraph}
-  <button className="btn btn-primary">${hero.btnName}</button>
+  <button className="btn btn-info">${hero.btnName}</button>
   </section>`;
 
   // complete code

@@ -30,7 +30,7 @@ const DefaultHome = () => {
         Please click 'Get Started' button and start your project
       </p>
       <Link to="/project-info">
-        <button className="btn btn-primary">Get Started</button>
+        <button className="btn btn-info">Get Started</button>
       </Link>
     </div>
   );

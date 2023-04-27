@@ -5,9 +5,9 @@ const DSHero = () => {
   const {
     hero,
     changeHeroTitle,
-    changeFirstDescription,
-    changeSecondDescription,
+    changeDescription,
     changeButtonName,
+    changeImage,
   } = useContext(DSHeroContext);
 
   // form default
@@ -31,7 +31,7 @@ const DSHero = () => {
         <label className="text-lg font-medium">Section Title</label>
         <input
           type="text"
-          defaultValue={hero.title.replace("&lt;", "<").replace("&gt;", ">")}
+          defaultValue={hero?.title.replace("&lt;", "<").replace("&gt;", ">")}
           onChange={changeHeroTitle}
           spellCheck="false"
           placeholder="Section Title"
@@ -39,35 +39,32 @@ const DSHero = () => {
         />
         {/* paragraph */}
         <label className="text-lg font-medium">Section Description</label>
-        <p>First Description</p>
         <textarea
           type="text"
           rows={6}
-          onChange={changeFirstDescription}
-          defaultValue={hero.descriptions[0]}
+          onChange={changeDescription}
+          defaultValue={hero?.descriptions}
           spellCheck="false"
           placeholder="Section Description"
           className="p-2 border rounded-md"
         ></textarea>
-
-        <p>Second Description</p>
-        <textarea
-          type="text"
-          rows={6}
-          onChange={changeSecondDescription}
-          defaultValue={hero.descriptions[1]}
-          spellCheck="false"
-          placeholder="Section Description"
-          className="p-2 border rounded-md"
-        ></textarea>
-
         {/* button name */}
         <label className="text-lg font-medium">Button Name</label>
         <input
           type="text"
-          defaultValue={hero.btnName}
+          defaultValue={hero?.btnName}
           onChange={changeButtonName}
           placeholder="Button Name"
+          className="p-2 border rounded-md"
+        />
+
+        {/* image */}
+        <label className="text-lg font-medium">Image Name or URL</label>
+        <input
+          type="text"
+          defaultValue={hero?.image}
+          onChange={changeImage}
+          placeholder="Change Image"
           className="p-2 border rounded-md"
         />
       </form>

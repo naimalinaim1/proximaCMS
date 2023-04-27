@@ -15,51 +15,41 @@ const Preview = () => {
   const services = getSaveServicesInfo();
 
   const completeHeader = `
-  <header class="w-[96%] max-w-[1280px] mx-auto flex justify-between  py-6">
-  <div class="md:flex justify-between items-center w-full">
-    <div class="font-bold text-xl">${header.logoName}</div>
-    <nav class="space-x-4 cursor-pointer">
-      ${header.linkName.join("&nbsp;&nbsp;&nbsp;&nbsp;")}
-    </nav>
-  </div>
-</header>`;
+  <header class="w-[96%] max-w-[1280px] mx-auto flex justify-between py-6 border-b">
+    <div class="md:flex justify-between items-center w-full">
+      <div class="font-bold text-xl">${header?.logoName}</div>
+      <nav class="space-x-4 cursor-pointer">
+        ${header?.linkName.join("&nbsp;&nbsp;&nbsp;&nbsp;")}
+      </nav>
+    </div>
+  </header>`;
 
   const completeBanner = `
-  <section class="w-[96%] max-w-[1280px] mx-auto grid md:grid-cols-2 items-center min-h-[500px] mt-10">
-  <div>
-    <h2 class="text-5xl font-bold leading-[60px]">
-      ${banner?.title}
-    </h2>
-    <p class="text-lg text-gray-600 mt-4">
-      ${banner?.description}
-    </p>
-    <div class="mt-8 space-x-4">
-      <button class="btn btn-info">${banner?.btnName[0]}</button>
-      <button class="btn btn-outline btn-info">${banner?.btnName[1]}</button>
+  <section class="w-[96%] max-w-[1280px] mx-auto grid md:grid-cols-2 gap-4 items-center min-h-[500px] mt-10">
+    <div>
+      <h2 class="text-5xl text-[#111111] font-bold leading-[60px]">${banner?.title}</h2>
+      <p class="text-lg text-gray-600 mt-4">${banner?.description}</p>
+      <div class="mt-10 space-x-4">
+        <button class="btn btn-info">${banner?.btnName[0]}</button>
+        <button class="btn btn-outline btn-info">${banner?.btnName[1]}</button>
+      </div>
     </div>
-  </div>
-  <div class="flex justify-center items-center">
-    <img
-      src="${banner?.image}"
-      alt="Banner image"
-      class="w-auto h-auto lg:h-[520px] lg:w-[520px]"
-    />
-  </div>
+    <img src="${banner?.image}" alt="Banner image" class="w-full p-6 max-h-[500px]" />
   </section>`;
 
   const completeHero = `
-    <section class="mt-24 text-center w-[96%] max-w-[1280px] mx-auto">
-      <h2 class="w-[75%] mx-auto text-4xl font-bold leading-[60px]">
-        ${hero.title}
-      </h2>
-      <p class="text-xl font-light mt-4 leading-8">${hero.descriptions[0]}</p>
-      <p class="text-xl font-light mt-5 leading-8">${hero.descriptions[1]}</p>
-      <button class="btn btn-info mt-8">${hero.btnName}</button>
+  <section class="grid grid-cols-[500px_1fr] gap-6 items-center mt-24 w-[96%] max-w-[1280px] mx-auto">
+    <img class="w-full max-h-[500px] pr-10 py-8 rounded-lg" src="${hero?.image}"/>
+    <div>
+      <h2 class="text-4xl font-bold leading-[60px]">${hero?.title}</h2>
+      <p class="text-xl text-[#111111a1] mt-4 leading-8">${hero?.descriptions}</p>
+      <button class="btn btn-info mt-8">${hero?.btnName}</button>
+    </div>
   </section>`;
 
-  const serviceItems = services.services.map(
-    (item) =>
-      `<div class="card border">
+  const serviceItems = services?.services.map(
+    (item) => `
+      <div class="card border">
           <div class="card-body">
             <h3 class="card-title">${item.title}</h3>
             <p class="card-text">${item.description}</p>
@@ -75,14 +65,12 @@ const Preview = () => {
   );
 
   const completeServices = `
-  <section class="w-[96%]  max-w-[1280px] mx-auto mt-32">
-  <h2 class="text-4xl font-bold text-center mt-14 mb-10">
-    ${services.title}
-  </h2>
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+  <section class="w-[96%] max-w-[1280px] mx-auto mt-24">
+    <h2 class="text-4xl font-bold text-center mb-10">${services?.title}</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
     ${serviceItems.join("")}
-  </div>
-</section>`;
+    </div>
+  </section>`;
 
   const webPreviewCode =
     completeHeader + completeBanner + completeHero + completeServices;

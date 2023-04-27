@@ -33,6 +33,7 @@ const DSBanner = () => {
           type="text"
           name="description"
           defaultValue={banner?.description}
+          autoComplete="off"
           spellCheck="false"
           placeholder="Banner Description"
           className="p-2 border rounded-md"

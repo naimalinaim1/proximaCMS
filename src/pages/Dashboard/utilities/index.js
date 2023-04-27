@@ -35,7 +35,8 @@ const getDefaultProjectInfo = () => {
 
   const defaultBanner = {
     title: "Get involved Become a Trader.",
-    description: "We Allows Our User to Conduct Financial Transactions Online.",
+    description:
+      "We Allows Our User to Conduct Financial Transactions Online. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione tempore recusandae modi, architecto quibusdam nesciunt vitae quia quo quod omnis cum veritatis placeat.",
     btnName: ["Get Started", "Watch A Trailer"],
     image:
       "https://img.freepik.com/free-vector/chatting-concept-illustration_114360-500.jpg",
@@ -43,11 +44,11 @@ const getDefaultProjectInfo = () => {
 
   const defaultHero = {
     title: "My Hero Section on a Website?",
-    descriptions: [
+    descriptions:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione tempore recusandae modi, architecto quibusdam nesciunt vitae quia quo quod omnis cum veritatis placeat autem minima repellat, vel maxime! Voluptates nihil at natus labore esse, mollitia ipsam magni consequatur commodi doloribus est impedit soluta vel consequuntur sequi, architecto, rem obcaecati iusto in. Cumque harum quod labore provident reiciendis ipsum nostrum quis autem ipsam officiis possimus quisquam id, fugit blanditiis rerum ex?",
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ratione tempore recusandae modi, architecto quibusdam nesciunt vitae quia quo quod omnis cum veritatis placeat autem minima repellat, vel maxime! Voluptates nihil at natus labore esse, mollitia ipsam magni consequatur commodi doloribus est impedit soluta vel consequuntur sequi, architecto, rem obcaecati iusto in. Cumque harum quod labore provident reiciendis ipsum nostrum quis autem ipsam officiis possimus quisquam id, fugit blanditiis rerum ex?",
-    ],
     btnName: "Get Started",
+    image:
+      "https://img.freepik.com/free-vector/chatting-concept-illustration_114360-89.jpg",
   };
 
   const defaultServices = {

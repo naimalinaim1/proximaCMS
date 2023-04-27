@@ -18,22 +18,8 @@ const DHero = () => {
   };
 
   // change first description
-  const changeFirstDescription = (e) => {
-    const des = e.target.value;
-    const previousDes = hero.descriptions;
-    const descriptions = [des, previousDes[1]];
-
-    setHero((prevState) => ({
-      ...prevState,
-      descriptions,
-    }));
-  };
-
-  // change second description
-  const changeSecondDescription = (e) => {
-    const des = e.target.value;
-    const previousDes = hero.descriptions;
-    const descriptions = [previousDes[0], des];
+  const changeDescription = (e) => {
+    const descriptions = e.target.value;
 
     setHero((prevState) => ({
       ...prevState,
@@ -47,13 +33,19 @@ const DHero = () => {
     setHero({ ...hero, btnName });
   };
 
+  // change image
+  const changeImage = (e) => {
+    const image = e.target.value;
+    setHero({ ...hero, image });
+  };
+
   // hero info
   const DSHeroInfo = {
     hero,
     changeHeroTitle,
-    changeFirstDescription,
-    changeSecondDescription,
+    changeDescription,
     changeButtonName,
+    changeImage,
   };
 
   // save hero local storage
@@ -63,18 +55,21 @@ const DHero = () => {
 
   return (
     <>
-      <section className="w-[96%] max-w-[1280px] mx-auto text-center">
-        <h2 className="w-[75%] mx-auto text-5xl font-bold leading-[60px]">
-          {hero.title.replace("&lt;", "<").replace("&gt;", ">")}
-        </h2>
-        {hero.descriptions.map((des, index) => (
-          <p key={index} className="text-xl font-light my-5 leading-8">
-            {des}
-          </p>
-        ))}
-
-        <button className="btn btn-info">{hero.btnName}</button>
+      <section className="w-[96%] max-w-[1280px] mx-auto grid grid-cols-[2fr_3fr] gap-6 items-center">
+        <img
+          className="w-full rounded-lg max-h-[400px]"
+          src={hero?.image}
+          alt="No hero image found"
+        />
+        <div>
+          <h2 className="text-3xl font-bold">
+            {hero.title.replace("&lt;", "<").replace("&gt;", ">")}
+          </h2>
+          <p className="text-[#111111a1] mt-4">{hero.descriptions}</p>
+          <button className="btn btn-info mt-8">{hero.btnName}</button>
+        </div>
       </section>
+
       <div className="mt-10">
         <DSHeroContext.Provider value={DSHeroInfo}>
           <DSHero />
