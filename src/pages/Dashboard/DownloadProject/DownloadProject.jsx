@@ -4,33 +4,81 @@ import { getForm, getHeader, getProjectInfo } from "../utilities";
 const DownloadProject = () => {
   const getProject = getProjectInfo();
 
-  const title = getProject.title;
-  const header = getProject.header;
-  const hero = getProject.hero;
+  const title = getProject?.title;
+  const header = getProject?.header;
+  const banner = getProject?.banner;
+  const hero = getProject?.hero;
+  const services = getProject?.service;
 
   // create download formate header
   const getHeaderLink = header.headerLink.map((link) => link).join("");
-  const makeHeader = `
-  <header className="w-[96%] max-w-[1280px] mx-auto flex justify-between items-center py-6">
-  <div className="font-bold text-xl">${header.logoName}</div>
-  <nav className="flex space-x-4">
-    ${getHeaderLink}
-  </nav>
-  </header>`;
+  const serviceItems = services?.services.map(
+    (item) => `
+      <div class="card border">
+          <div class="card-body">
+            <h3 class="card-title">${item.title}</h3>
+            <p class="card-text">${item.description}</p>
+            <div class="flex items-center justify-between mt-4">
+              <div>
+                <span class="text-lg font-bold">${item.price}</span>
+                <span class="text-gray-500 text-sm ml-2">${item.duration}</span>
+              </div>
+              <button class="btn btn-info">${item.btnName}</button>
+            </div>
+          </div>
+      </div>`
+  );
 
-  // create download formate hero
-  const getParagraph = hero.descriptions
-    .map((des) => `<p className="text-xl font-light mb-6 leading-8">${des}</p>`)
-    .join("");
+  const htmlCode = `
+    <!-- header -->
+    <header class="flex justify-between items-center py-6">
+      <div class="font-bold text-xl">${header.logoName}</div>
+      <nav class="flex space-x-4">
+        ${getHeaderLink}
+      </nav>
+    </header>
 
-  const makeHero = `
-  <section class="mt-16 text-center w-[96%] max-w-[1280px] mx-auto">
-  <h2 className="w-[75%] mx-auto text-5xl font-bold leading-[60px] mb-6">
-    ${hero.title}
-  </h2>
-    ${getParagraph}
-  <button className="btn btn-info">${hero.btnName}</button>
-  </section>`;
+    <!-- banner section -->
+    <section class="grid md:grid-cols-2 gap-4 items-center min-h-[500px] mt-10">
+      <div>
+        <h2 class="text-5xl text-[#111111] font-bold leading-[60px]">${
+          banner?.title
+        }</h2>
+        <p class="text-lg text-gray-600 mt-4">${banner?.description}</p>
+        <div class="mt-10 space-x-4">
+          <button class="btn btn-info">${banner?.btnName[0]}</button>
+          <button class="btn btn-outline btn-info">${
+            banner?.btnName[1]
+          }</button>
+        </div>
+      </div>
+      <img src="${
+        banner?.image
+      }" alt="Banner image" class="w-full p-6 max-h-[500px]" />
+    </section>
+
+    <!-- hero section -->
+    <section class="grid grid-cols-[500px_1fr] gap-6 items-center mt-24">
+      <img class="w-full max-h-[500px] pr-10 py-8 rounded-lg" src="${
+        hero?.image
+      }"/>
+      <div>
+        <h2 class="text-4xl font-bold leading-[60px]">${hero?.title}</h2>
+        <p class="text-xl text-[#111111a1] mt-4 leading-8">${
+          hero?.descriptions
+        }</p>
+        <button class="btn btn-info mt-8">${hero?.btnName}</button>
+      </div>
+    </section>
+
+    <!-- services section -->
+    <section class="w-[96%] max-w-[1280px] mx-auto mt-24">
+      <h2 class="text-4xl font-bold text-center mb-10">${services?.title}</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      ${serviceItems.join("")}
+      </div>
+    </section>
+  `;
 
   // complete code
   const completeCode = `
@@ -43,15 +91,14 @@ const DownloadProject = () => {
       <script src="https://cdn.tailwindcss.com"></script>
       <title>${title}</title>
     </head>
-    <body>
-      ${makeHeader}
-      ${makeHero}
+    <body class="w-[96%] max-w-[1280px] mx-auto">
+      ${htmlCode}
     </body>
     </html>`;
 
   // download project
   const handleDownload = () => {
-    const text = completeCode.replaceAll("className", "class");
+    const text = completeCode;
     const filename = "index.html";
 
     const blob = new Blob([text], { type: "text/plain" });
