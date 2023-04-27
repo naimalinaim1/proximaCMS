@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  getSaveBannerInfo,
   getSaveHeaderInfo,
   getSaveHeroInfo,
   getSaveServicesInfo,
@@ -9,6 +10,7 @@ import {
 const Preview = () => {
   const title = getTitle();
   const header = getSaveHeaderInfo();
+  const banner = getSaveBannerInfo();
   const hero = getSaveHeroInfo();
   const services = getSaveServicesInfo();
 
@@ -22,35 +24,58 @@ const Preview = () => {
   </div>
 </header>`;
 
+  const completeBanner = `
+  <section class="w-[96%] max-w-[1280px] mx-auto grid md:grid-cols-2 items-center min-h-[500px] mt-10">
+  <div>
+    <h2 class="text-5xl font-bold leading-[60px]">
+      ${banner?.title}
+    </h2>
+    <p class="text-lg text-gray-600 mt-4">
+      ${banner?.description}
+    </p>
+    <div class="mt-8 space-x-4">
+      <button class="btn btn-info">${banner?.btnName[0]}</button>
+      <button class="btn btn-outline btn-info">${banner?.btnName[1]}</button>
+    </div>
+  </div>
+  <div class="flex justify-center items-center">
+    <img
+      src="${banner?.image}"
+      alt="Banner image"
+      class="w-auto h-auto lg:h-[520px] lg:w-[520px]"
+    />
+  </div>
+  </section>`;
+
   const completeHero = `
-    <section class="mt-16 text-center w-[96%] max-w-[1280px] mx-auto">
-      <h2 class="w-[75%] mx-auto text-5xl font-bold leading-[60px]">
+    <section class="mt-24 text-center w-[96%] max-w-[1280px] mx-auto">
+      <h2 class="w-[75%] mx-auto text-4xl font-bold leading-[60px]">
         ${hero.title}
       </h2>
-      <p class="text-xl font-light my-6 leading-8">${hero.descriptions[0]}</p>
-      <p class="text-xl font-light mb-10 leading-8">${hero.descriptions[1]}</p>
-      <button class="btn btn-primary">${hero.btnName}</button>
+      <p class="text-xl font-light mt-4 leading-8">${hero.descriptions[0]}</p>
+      <p class="text-xl font-light mt-5 leading-8">${hero.descriptions[1]}</p>
+      <button class="btn btn-info mt-8">${hero.btnName}</button>
   </section>`;
 
   const serviceItems = services.services.map(
     (item) =>
       `<div class="card border">
-        <div class="card-body">
-          <h3 class="card-title">${item.title}</h3>
-          <p class="card-text">${item.description}</p>
-          <div class="flex items-center justify-between mt-4">
-            <div>
-              <span class="text-lg font-bold">${item.price}</span>
-              <span class="text-gray-500 text-sm ml-2">${item.duration}</span>
+          <div class="card-body">
+            <h3 class="card-title">${item.title}</h3>
+            <p class="card-text">${item.description}</p>
+            <div class="flex items-center justify-between mt-4">
+              <div>
+                <span class="text-lg font-bold">${item.price}</span>
+                <span class="text-gray-500 text-sm ml-2">${item.duration}</span>
+              </div>
+              <button class="btn btn-info">${item.btnName}</button>
             </div>
-            <button class="btn btn-info">${item.btnName}</button>
           </div>
-        </div>
       </div>`
   );
 
   const completeServices = `
-  <section class="w-[96%]  max-w-[1280px] mx-auto mb-10">
+  <section class="w-[96%]  max-w-[1280px] mx-auto mt-32">
   <h2 class="text-4xl font-bold text-center mt-14 mb-10">
     ${services.title}
   </h2>
@@ -59,7 +84,8 @@ const Preview = () => {
   </div>
 </section>`;
 
-  const webPreviewCode = completeHeader + completeHero + completeServices;
+  const webPreviewCode =
+    completeHeader + completeBanner + completeHero + completeServices;
   document.title = title;
   document.body.innerHTML = webPreviewCode;
   return <></>;

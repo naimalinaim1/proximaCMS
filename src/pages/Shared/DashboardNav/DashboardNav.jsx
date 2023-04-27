@@ -8,6 +8,7 @@ const DashboardNav = () => {
       <nav className="space-y-4">
         <ActiveLink to="/dashboard">Dashboard</ActiveLink>
         <ActiveLink to="header">Header</ActiveLink>
+        <ActiveLink to="banner">Banner</ActiveLink>
         <ActiveLink to="hero">Hero</ActiveLink>
         <ActiveLink to="services">Services</ActiveLink>
         <ActiveLink to="form">Form</ActiveLink>

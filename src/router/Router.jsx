@@ -28,6 +28,7 @@ import DeployPreview from "../pages/Deploy/DeployPreview";
 import DServices from "../pages/Dashboard/DServices/DServices";
 import DSServices from "../pages/Dashboard/DServices/DSServices";
 import { loadServiceData } from "../pages/Dashboard/utilities";
+import DBanner from "../pages/Dashboard/DBanner/DBanner";
 
 const router = createBrowserRouter([
   {
@@ -86,6 +87,14 @@ const router = createBrowserRouter([
             element: (
               <PrivateDashboardRoute>
                 <DHeader />
+              </PrivateDashboardRoute>
+            ),
+          },
+          {
+            path: "banner",
+            element: (
+              <PrivateDashboardRoute>
+                <DBanner />
               </PrivateDashboardRoute>
             ),
           },

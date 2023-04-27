@@ -33,6 +33,14 @@ const getDefaultProjectInfo = () => {
     linkName: ["Home", "About", "Service"],
   };
 
+  const defaultBanner = {
+    title: "Get involved Become a Trader.",
+    description: "We Allows Our User to Conduct Financial Transactions Online.",
+    btnName: ["Get Started", "Watch A Trailer"],
+    image:
+      "https://img.freepik.com/free-vector/chatting-concept-illustration_114360-500.jpg",
+  };
+
   const defaultHero = {
     title: "My Hero Section on a Website?",
     descriptions: [
@@ -87,6 +95,7 @@ const getDefaultProjectInfo = () => {
   const defaultProject = {
     title: "Blank Title",
     header: defaultHeader,
+    banner: defaultBanner,
     hero: defaultHero,
     service: defaultServices,
   };
@@ -132,6 +141,23 @@ const saveHeader = (header) => {
 const getHeader = () => {
   const header = localStorage.getItem("header");
   return header;
+};
+/* ----------------------------- banner section ---------------------------- */
+// get save banner section information
+const getSaveBannerInfo = () => {
+  const project = getProjectInfo();
+  const banner = project.banner;
+  return banner;
+};
+
+// save banner
+const saveBanner = (banner) => {
+  const saveProject = getProjectInfo();
+  const projectName = getCurrentProject();
+
+  // save banner
+  saveProject.banner = banner;
+  localStorage.setItem(projectName, JSON.stringify(saveProject));
 };
 
 /* ----------------------------- hero section ---------------------------- */
@@ -195,4 +221,6 @@ export {
   getSaveServicesInfo,
   saveServices,
   loadServiceData,
+  getSaveBannerInfo,
+  saveBanner,
 };

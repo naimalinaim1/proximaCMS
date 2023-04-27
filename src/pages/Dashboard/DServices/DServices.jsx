@@ -87,9 +87,7 @@ const DServices = () => {
               serviceItems.map((item) => (
                 <div key={item.id} className="card border">
                   <div className="card-body">
-                    <h3 className="card-title">
-                      {item.title} {item.id}
-                    </h3>
+                    <h3 className="card-title">{item.title}</h3>
                     <p className="card-text">{item.description}</p>
                     <div className="flex items-center justify-between mt-4">
                       <div>

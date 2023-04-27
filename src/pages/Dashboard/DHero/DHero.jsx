@@ -73,7 +73,7 @@ const DHero = () => {
           </p>
         ))}
 
-        <button className="btn btn-primary">{hero.btnName}</button>
+        <button className="btn btn-info">{hero.btnName}</button>
       </section>
       <div className="mt-10">
         <DSHeroContext.Provider value={DSHeroInfo}>
