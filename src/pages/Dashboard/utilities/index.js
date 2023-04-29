@@ -93,12 +93,35 @@ const getDefaultProjectInfo = () => {
     ],
   };
 
+  const defaultFooter = {
+    companyName: "ACME Industries Ltd.",
+    sinceDate: "Providing reliable tech since 1992",
+    footerLinks: [
+      {
+        linkTitle: "Services",
+        linkNames: ["Branding", "Design", "Marketing", "Advertisement"],
+        linkActions: ["branding", "design", "marketing", "advertisement"],
+      },
+      {
+        linkTitle: "Company",
+        linkNames: ["About us", "Contact", "Jobs", "Press kit"],
+        linkActions: ["about-us", "contact", "jobs", "press-kit"],
+      },
+      {
+        linkTitle: "Legal",
+        linkNames: ["Terms of use", "Privacy policy", "Cookie policy"],
+        linkActions: ["terms", "privacy-policy", "cookie-policy"],
+      },
+    ],
+  };
+
   const defaultProject = {
     title: "Blank Title",
     header: defaultHeader,
     banner: defaultBanner,
     hero: defaultHero,
     service: defaultServices,
+    footer: defaultFooter,
   };
 
   return defaultProject;
@@ -180,6 +203,7 @@ const saveHero = (hero) => {
   localStorage.setItem(projectName, JSON.stringify(saveProject));
 };
 
+/* ----------------------------- service section ---------------------------- */
 // get save services section information
 const getSaveServicesInfo = () => {
   const project = getProjectInfo();
@@ -204,6 +228,24 @@ const loadServiceData = (id) => {
   return [services, id];
 };
 
+/* ----------------------------- footer section ---------------------------- */
+// get save footer section information
+const getSaveFooterInfo = () => {
+  const project = getProjectInfo();
+  const footer = project.footer;
+  return footer;
+};
+
+// save footer
+const saveFooter = (footer) => {
+  const saveProject = getProjectInfo();
+  const projectName = getCurrentProject();
+
+  // set project services
+  saveProject.footer = footer;
+  localStorage.setItem(projectName, JSON.stringify(saveProject));
+};
+
 const getForm = () => {
   const form = localStorage.getItem("form");
   return form;
@@ -224,4 +266,6 @@ export {
   loadServiceData,
   getSaveBannerInfo,
   saveBanner,
+  getSaveFooterInfo,
+  saveFooter,
 };

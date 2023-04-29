@@ -29,6 +29,7 @@ import DServices from "../pages/Dashboard/DServices/DServices";
 import DSServices from "../pages/Dashboard/DServices/DSServices";
 import { loadServiceData } from "../pages/Dashboard/utilities";
 import DBanner from "../pages/Dashboard/DBanner/DBanner";
+import DFooter from "../pages/Dashboard/DFooter/DFooter";
 
 const router = createBrowserRouter([
   {
@@ -128,6 +129,14 @@ const router = createBrowserRouter([
             element: (
               <PrivateDashboardRoute>
                 <DForm />
+              </PrivateDashboardRoute>
+            ),
+          },
+          {
+            path: "footer",
+            element: (
+              <PrivateDashboardRoute>
+                <DFooter />
               </PrivateDashboardRoute>
             ),
           },
