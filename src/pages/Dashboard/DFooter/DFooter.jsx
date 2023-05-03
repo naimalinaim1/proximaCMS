@@ -20,6 +20,37 @@ const DFooter = () => {
     setFooter((preState) => ({ ...preState, sinceDate }));
   };
 
+  // change all title
+  const changeTitle = (e, index) => {
+    const linkTitle = e.target.value;
+    const footerLinks = [...footer.footerLinks];
+    footerLinks[index] = { ...footerLinks[index], linkTitle };
+    setFooter((preState) => ({ ...preState, footerLinks }));
+  };
+
+  // change service title
+  const changeServiceTitle = (e) => {
+    changeTitle(e, 0);
+  };
+
+  // change company
+  const changeCompanyTitle = () => {
+    changeTitle(e, 1);
+  };
+
+  // change legal
+  const changeLegalTitle = () => {
+    changeTitle(e, 2);
+  };
+
+  // change footer link name
+  const changeFooterLink = (arrIdx, idx, name, action) => {
+    console.log(arrIdx);
+    console.log(idx);
+    console.log(name);
+    console.log(action);
+  };
+
   // save footer
   useEffect(() => {
     saveFooter(footer);
@@ -29,6 +60,10 @@ const DFooter = () => {
     footer,
     changeCompanyName,
     changeCompanySinceData,
+    changeServiceTitle,
+    changeCompanyTitle,
+    changeLegalTitle,
+    changeFooterLink,
   };
   return (
     <>
