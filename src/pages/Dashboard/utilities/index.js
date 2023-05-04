@@ -24,11 +24,6 @@ const getTitle = () => {
 const getDefaultProjectInfo = () => {
   const defaultHeader = {
     logoName: "Company Name",
-    headerLink: [
-      "<a href='/'>Home</a>",
-      "<a href='about'>About</a>",
-      "<a href='service'>Service</a>",
-    ],
     linkAction: ["/", "about", "service"],
     linkName: ["Home", "About", "Service"],
   };
@@ -246,18 +241,12 @@ const saveFooter = (footer) => {
   localStorage.setItem(projectName, JSON.stringify(saveProject));
 };
 
-const getForm = () => {
-  const form = localStorage.getItem("form");
-  return form;
-};
-
 export {
   getSaveHeaderInfo,
   saveHeader,
   getHeader,
   getSaveHeroInfo,
   saveHero,
-  getForm,
   getProjectInfo,
   getCurrentProject,
   getTitle,

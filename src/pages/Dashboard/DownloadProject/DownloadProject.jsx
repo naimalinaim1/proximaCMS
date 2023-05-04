@@ -1,5 +1,5 @@
 import React from "react";
-import { getForm, getHeader, getProjectInfo } from "../utilities";
+import { getProjectInfo } from "../utilities";
 
 const DownloadProject = () => {
   const getProject = getProjectInfo();

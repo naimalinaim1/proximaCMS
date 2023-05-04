@@ -25,16 +25,12 @@ const DHeader = () => {
   const changeLinkName = (index, name, address) => {
     const newLinkAction = [...header.linkAction];
     const newLinkName = [...header.linkName];
-    const newHeaderLink = [...header.headerLink];
 
-    const linkTemplate = `<a href='${address}'>${name}</a>`;
     newLinkName[index] = name;
     newLinkAction[index] = address;
-    newHeaderLink[index] = linkTemplate;
 
     const newHeader = {
       ...header,
-      headerLink: newHeaderLink,
       linkAction: newLinkAction,
       linkName: newLinkName,
     };

@@ -11,7 +11,6 @@ const DashboardNav = () => {
         <ActiveLink to="banner">Banner</ActiveLink>
         <ActiveLink to="hero">Hero</ActiveLink>
         <ActiveLink to="services">Services</ActiveLink>
-        <ActiveLink to="form">Form</ActiveLink>
         <ActiveLink to="footer">Footer</ActiveLink>
         <ActiveLink to="download">Download Project</ActiveLink>
       </nav>

@@ -16,7 +16,6 @@ import Dashboard from "../pages/Dashboard/Dashboard";
 import DefaultDashboard from "../pages/Dashboard/DefaultDashboard/DefaultDashboard";
 import DHeader from "../pages/Dashboard/DHeader/DHeader";
 import Preview from "../pages/Dashboard/Preview/Preview";
-import DForm from "../pages/Dashboard/DForm/DForm";
 import DownloadProject from "../pages/Dashboard/DownloadProject/DownloadProject";
 import DHero from "../pages/Dashboard/DHero/DHero";
 import Services from "../pages/Services/Services";
@@ -127,14 +126,6 @@ const router = createBrowserRouter([
               </PrivateDashboardRoute>
             ),
             loader: ({ params }) => loadServiceData(params.id),
-          },
-          {
-            path: "form",
-            element: (
-              <PrivateDashboardRoute>
-                <DForm />
-              </PrivateDashboardRoute>
-            ),
           },
           {
             path: "footer",
