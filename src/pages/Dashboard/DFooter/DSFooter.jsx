@@ -2,11 +2,18 @@ import React, { useContext, useState } from "react";
 import { DSFContext } from "./DFooter";
 import DSFService from "./DSFService";
 import DSFCommon from "./DSFCommon";
+import DSFCompany from "./DSFCompany";
+import DSFLegal from "./DSFLegal";
 
 const DSFooter = () => {
   const { footer } = useContext(DSFContext);
   const [workId, setWorkId] = useState(0);
-  const workFile = [<DSFCommon />, <DSFService />];
+  const workFile = [
+    <DSFCommon />,
+    <DSFService />,
+    <DSFCompany />,
+    <DSFLegal />,
+  ];
 
   //   handle preview page
   const previewCode = () => {

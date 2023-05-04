@@ -34,21 +34,33 @@ const DFooter = () => {
   };
 
   // change company
-  const changeCompanyTitle = () => {
+  const changeCompanyTitle = (e) => {
     changeTitle(e, 1);
   };
 
   // change legal
-  const changeLegalTitle = () => {
+  const changeLegalTitle = (e) => {
     changeTitle(e, 2);
   };
 
   // change footer link name
   const changeFooterLink = (arrIdx, idx, name, action) => {
-    console.log(arrIdx);
-    console.log(idx);
-    console.log(name);
-    console.log(action);
+    const footerLinks = [...footer.footerLinks];
+    const getArray = footerLinks[arrIdx];
+    const changeLink = getArray[name];
+    changeLink[idx] = action;
+    setFooter((preState) => ({ ...preState, footerLinks }));
+  };
+
+  // delete footer link
+  const deleteFooterLink = (arrIdx, idx) => {
+    const footerLinks = [...footer.footerLinks];
+    const getArray = footerLinks[arrIdx];
+
+    getArray.linkActions.splice(idx, 1);
+    getArray.linkNames.splice(idx, 1);
+
+    setFooter((preState) => ({ ...preState, footerLinks }));
   };
 
   // save footer
@@ -64,6 +76,7 @@ const DFooter = () => {
     changeCompanyTitle,
     changeLegalTitle,
     changeFooterLink,
+    deleteFooterLink,
   };
   return (
     <>

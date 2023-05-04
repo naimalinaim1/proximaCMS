@@ -2,14 +2,23 @@ import React, { useContext } from "react";
 import { DSFContext } from "../DFooter";
 
 const DFLinks = ({ arrayIndex, index, name, action }) => {
-  const { changeFooterLink } = useContext(DSFContext);
+  const { changeFooterLink, deleteFooterLink } = useContext(DSFContext);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  // change link name and action
   const handleLink = (e) => {
     changeFooterLink(arrayIndex, index, e.target.name, e.target.value);
   };
 
+  const deleteLink = () => {
+    deleteFooterLink(arrayIndex, index);
+  };
+
   return (
-    <form onChange={handleLink} className="flex gap-4">
+    <form onSubmit={handleSubmit} onChange={handleLink} className="flex gap-4">
       <input
         type="text"
         name="linkNames"
@@ -24,8 +33,9 @@ const DFLinks = ({ arrayIndex, index, name, action }) => {
         placeholder="example: path"
         className="p-2 border rounded-md"
       />
-      <button className="btn btn-info">Save</button>
-      <button className="btn btn-error">Delete</button>
+      <p onClick={deleteLink} className="btn btn-error">
+        Delete
+      </p>
     </form>
   );
 };

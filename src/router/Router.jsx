@@ -77,7 +77,11 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: (
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        ),
         children: [
           {
             path: "",
@@ -168,11 +172,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/deploy",
-        element: <Deploy />,
+        element: (
+          <PrivateRoute>
+            <Deploy />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/deploy/:userName",
-        element: <DeployPreview />,
+        element: (
+          <PrivateRoute>
+            <DeployPreview />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/register",
