@@ -159,7 +159,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/project-info",
-        element: <ProjectInfo />,
+        element: (
+          <PrivateRoute>
+            <ProjectInfo />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/project-setting",
+        element: (
+          <PrivateDashboardRoute>
+            <h2>project setting</h2>
+          </PrivateDashboardRoute>
+        ),
       },
       {
         path: "/deploy",

@@ -13,6 +13,7 @@ const DashboardNav = () => {
         <ActiveLink to="services">Services</ActiveLink>
         <ActiveLink to="footer">Footer</ActiveLink>
         <ActiveLink to="download">Download Project</ActiveLink>
+        <ActiveLink to="/project-setting">Settings</ActiveLink>
       </nav>
     </nav>
   );
