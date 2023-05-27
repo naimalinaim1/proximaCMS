@@ -1,19 +1,22 @@
 import React, { createContext, useEffect, useState } from "react";
 import DSHero from "./DSHero";
-import { getSaveHeroInfo, saveHero } from "../utilities";
+import { getCurrentProject, saveHero } from "../utilities";
 
 export const DSHeroContext = createContext(null);
 
 const DHero = () => {
-  const makeHero = getSaveHeroInfo();
-  const [hero, setHero] = useState(makeHero);
+  const [hero, setHero] = useState({});
+  const currentProjectId = getCurrentProject();
+  // load project by id
+  useEffect(() => {
+    fetch(`http://localhost:3000/hero?id=${currentProjectId}`)
+      .then((res) => res.json())
+      .then((project) => setHero(project.project.hero));
+  }, [currentProjectId]);
 
-  const replaceText = (value) => {
-    return value.replace("<", "&lt;").replace(">", "&gt;");
-  };
   // change hero title
   const changeHeroTitle = (e) => {
-    const title = replaceText(e.target.value);
+    const title = e.target.value;
     setHero({ ...hero, title });
   };
 
@@ -50,7 +53,20 @@ const DHero = () => {
 
   // save hero local storage
   useEffect(() => {
-    saveHero(hero);
+    if (hero.update) {
+      fetch(
+        `http://localhost:3000/updateProject?id=${currentProjectId}&updateOption=hero`,
+        {
+          method: "PATCH",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(hero),
+        }
+      )
+        .then((res) => res.json())
+        .then((updateInfo) => {
+          // update successfully
+        });
+    }
   }, [hero]);
 
   return (
@@ -62,11 +78,9 @@ const DHero = () => {
           alt="No hero image found"
         />
         <div>
-          <h2 className="text-3xl font-bold">
-            {hero.title.replace("&lt;", "<").replace("&gt;", ">")}
-          </h2>
-          <p className="text-[#111111a1] mt-4">{hero.descriptions}</p>
-          <button className="btn btn-info mt-8">{hero.btnName}</button>
+          <h2 className="text-3xl font-bold">{hero?.title}</h2>
+          <p className="text-[#111111a1] mt-4">{hero?.descriptions}</p>
+          <button className="btn btn-info mt-8">{hero?.btnName}</button>
         </div>
       </section>
 

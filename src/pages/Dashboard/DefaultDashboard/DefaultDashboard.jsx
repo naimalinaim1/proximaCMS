@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getCurrentProject } from "../utilities";
+import { AuthContext } from "../../../provider/AuthProvider";
 
 const DefaultDashboard = () => {
+  const { user } = useContext(AuthContext);
   const navigate = useNavigate();
   const [currentProject, setCurrentProject] = useState("");
 
@@ -40,7 +42,7 @@ const DefaultDashboard = () => {
         cupiditate modi sequi sapiente id, porro quas ut at possimus debitis?
       </p>
       <p className="text-lg mb-8 text-gray-600 text-justify">
-        Current Project: <span className="text-info">{currentProject}</span>
+        Current Project Id: <span className="text-info">{currentProject}</span>
       </p>
       <Link to="header">
         <button className="btn btn-info">Next Step</button>

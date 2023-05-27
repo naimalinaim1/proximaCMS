@@ -1,12 +1,19 @@
 import React, { createContext, useEffect, useState } from "react";
 import DSBanner from "./DSBanner";
-import { getSaveBannerInfo, saveBanner } from "../utilities";
+import { getCurrentProject, saveBanner } from "../utilities";
 
 export const DBSContext = createContext(null);
 
 const DBanner = () => {
-  const makeBanner = getSaveBannerInfo();
-  const [banner, setBanner] = useState(makeBanner);
+  const [banner, setBanner] = useState();
+  const currentProjectId = getCurrentProject();
+
+  // load project by id
+  useEffect(() => {
+    fetch(`http://localhost:3000/banner?id=${currentProjectId}`)
+      .then((res) => res.json())
+      .then((project) => setBanner(project.project.banner));
+  }, [currentProjectId]);
 
   const changeForm = (e) => {
     const name = e.target.name;
@@ -30,7 +37,20 @@ const DBanner = () => {
 
   // save banner
   useEffect(() => {
-    saveBanner(banner);
+    if (banner.update) {
+      fetch(
+        `http://localhost:3000/updateProject?id=${currentProjectId}&updateOption=banner`,
+        {
+          method: "PATCH",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(banner),
+        }
+      )
+        .then((res) => res.json())
+        .then((updateInfo) => {
+          // update successfully
+        });
+    }
   }, [banner]);
 
   const DBSInfo = {

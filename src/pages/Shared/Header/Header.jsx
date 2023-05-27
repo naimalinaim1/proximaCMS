@@ -15,7 +15,7 @@ const Header = () => {
   return (
     <header className="border-b w-[96%] max-w-[1280px] mx-auto flex justify-between  py-6">
       <div className="md:flex justify-between items-center w-full">
-        <div className="font-bold text-xl">Company Name</div>
+        <div className="font-bold text-xl text-blue-600">ProximaCMS</div>
         <nav
           className={` ${
             isOpen ? "block" : "hidden"

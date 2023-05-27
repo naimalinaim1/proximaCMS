@@ -24,44 +24,19 @@ const SingleProject = ({ projects, project, setProjects }) => {
       showCancelButton: true,
       confirmButtonText: "Delete",
     }).then((result) => {
-      console.log(result);
       if (result.isConfirmed) {
         const value = result.value.trim();
         if (value === name.trim()) {
-          // delete a project by id
-          fetch(
-            `http://localhost:3000/deleteAProjectInfo?userEmail=${user.email}&projectId=${id}`,
-            {
-              method: "DELETE",
-            }
-          )
-            .then((res) => res.json())
-            .then((data) => {
-              if (data.deletedCount > 0) {
-                Swal.fire(
-                  "Successfully",
-                  "Project delete successfully",
-                  "success"
-                );
-                const remaining = projects.filter((p) => p._id !== id);
-                setProjects(remaining);
-              }
-            });
+          // delete project
         } else {
-          Swal.fire({
-            title: "Error!",
-            text: "Project name is invalid",
-            icon: "error",
-            confirmButtonText: "Cool",
-          });
+          // invalid project name
         }
       }
     });
-
-    return;
   };
 
-  const { _id, projectName, projectTitle } = project;
+  const { projectName, projectTitle } = project.projectInfo;
+  const { _id } = project;
   return (
     <div className="flex flex-col rounded p-2 text-center border">
       <p className="text-2xl font-bold">{projectName}</p>

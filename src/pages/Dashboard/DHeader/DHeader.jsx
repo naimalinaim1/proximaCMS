@@ -1,12 +1,19 @@
 import React, { createContext, useEffect, useRef, useState } from "react";
 import DSHeader from "./DSHeader";
-import { getSaveHeaderInfo, saveHeader } from "../utilities";
+import { getCurrentProject, getSaveHeaderInfo, saveHeader } from "../utilities";
 
 export const DSHContext = createContext(null);
 
 const DHeader = () => {
-  const makeHeader = getSaveHeaderInfo();
-  const [header, setHeader] = useState(makeHeader);
+  const [header, setHeader] = useState({});
+  const currentProjectId = getCurrentProject();
+
+  // load project by id
+  useEffect(() => {
+    fetch(`http://localhost:3000/header?id=${currentProjectId}`)
+      .then((res) => res.json())
+      .then((project) => setHeader(project.project.header));
+  }, [currentProjectId]);
 
   // change company logo
   const changeCompanyName = (e) => {
@@ -53,7 +60,20 @@ const DHeader = () => {
 
   // save header
   useEffect(() => {
-    saveHeader(header);
+    if (header.update) {
+      fetch(
+        `http://localhost:3000/updateProject?id=${currentProjectId}&updateOption=header`,
+        {
+          method: "PATCH",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify(header),
+        }
+      )
+        .then((res) => res.json())
+        .then((updateInfo) => {
+          // update successfully
+        });
+    }
   }, [header]);
 
   const DSHInfo = {
@@ -70,7 +90,7 @@ const DHeader = () => {
         <header className="w-[96%] max-w-[1280px] mx-auto flex justify-between items-center pb-6">
           <div className="font-bold text-xl">{header.logoName}</div>
           <nav className="flex space-x-4">
-            {header.linkName.map((lk, idx) => (
+            {header?.linkName?.map((lk, idx) => (
               <a className="cursor-pointer" key={idx}>
                 {lk}
               </a>

@@ -18,13 +18,11 @@ const ProjectInfo = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    // create a project info
-    fetch(
-      `http://localhost:3000/getProjectsInfoByEmail?userEmail=${user.email}`
-    )
+    fetch(`http://localhost:3000/projectsByEmail?email=${user?.email}`)
       .then((res) => res.json())
-      .then((data) => setProjects(data));
-  }, []);
+      .then((projects) => setProjects(projects));
+  }, [user]);
+
   //   handle create new project
   const handleCreateProject = (e) => {
     e.preventDefault();
@@ -35,36 +33,17 @@ const ProjectInfo = () => {
     const projectUserEmail = user?.email;
 
     if (projectName.length > 0 && projectTitle.length > 0) {
-      // save project in local storage
-      // const create = saveProjectInfo(projectName, projectTitle);
-      // if (create) {
-      //   navigate("/dashboard");
-      // } else {
-      //   setError("Project name is already exist!!!");
-      // }
-
       const projectInfo = { projectName, projectTitle, projectUserEmail };
 
-      // create a project info
-      fetch("http://localhost:3000/createAProjectInfo", {
+      // create a project
+      fetch("http://localhost:3000/projects", {
         method: "POST",
-        headers: { "content-type": "application/json" },
+        headers: { "Content-type": "application/json" },
         body: JSON.stringify(projectInfo),
       })
         .then((res) => res.json())
-        .then((data) => {
-          if (data.insertedId) {
-            saveCurrentProject(data.insertedId);
-            navigate("/dashboard");
-          } else {
-            Swal.fire({
-              title: "Error!",
-              text: "Project create problem. try again.",
-              icon: "error",
-              confirmButtonText: "Cool",
-            });
-            console.log(data);
-          }
+        .then((createProject) => {
+          console.log(createProject);
         });
     }
   };

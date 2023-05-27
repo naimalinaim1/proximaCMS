@@ -26,7 +26,7 @@ const DSHeader = () => {
         <label className="text-lg font-medium">Company Name</label>
         <input
           type="text"
-          defaultValue={header.logoName}
+          defaultValue={header?.logoName}
           onChange={changeCompanyName}
           name="companyName"
           placeholder="Company name"
@@ -34,12 +34,12 @@ const DSHeader = () => {
         />
         <label className="text-lg font-medium">Link</label>
         <div className="pb-4 space-y-2">
-          {header.linkName.map((name, index) => (
+          {header?.linkName?.map((name, index) => (
             <AddNewLink
               key={index}
               index={index}
               name={name}
-              address={header.linkAction[index]}
+              address={header?.linkAction[index]}
             />
           ))}
           {/* add new link */}

@@ -31,7 +31,7 @@ const DSHero = () => {
         <label className="text-lg font-medium">Section Title</label>
         <input
           type="text"
-          defaultValue={hero?.title.replace("&lt;", "<").replace("&gt;", ">")}
+          defaultValue={hero?.title}
           onChange={changeHeroTitle}
           spellCheck="false"
           placeholder="Section Title"
