@@ -58,7 +58,7 @@ const DHero = () => {
         `http://localhost:3000/updateProject?id=${currentProjectId}&updateOption=hero`,
         {
           method: "PATCH",
-          headers: { "Content-type": "application/json" },
+          headers: { "content-type": "application/json" },
           body: JSON.stringify(hero),
         }
       )

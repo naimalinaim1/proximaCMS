@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { getSaveServicesInfo, saveServices } from "../utilities";
+import { getCurrentProject, saveServices } from "../utilities";
 import DSServiceTitle from "./DSServiceTitle";
 import { useNavigate } from "react-router-dom";
 
@@ -7,10 +7,19 @@ export const DSServiceContext = createContext(null);
 
 const DServices = () => {
   const navigate = useNavigate();
-
-  const makeService = getSaveServicesInfo();
-  const [services, setServices] = useState(makeService);
+  const [services, setServices] = useState({});
   const [serviceItems, setServiceItems] = useState([]);
+  const currentProjectId = getCurrentProject();
+  // load project by id
+  useEffect(() => {
+    fetch(`http://localhost:3000/service?id=${currentProjectId}`)
+      .then((res) => res.json())
+      .then((project) => {
+        const service = project.project.service;
+        setServices(service);
+        setServiceItems(service.services);
+      });
+  }, [currentProjectId]);
 
   // change service section title
   const changeSectionTitle = (e) => {
@@ -57,12 +66,21 @@ const DServices = () => {
 
   // save services
   useEffect(() => {
-    saveServices(services);
+    if (services.update) {
+      fetch(
+        `http://localhost:3000/updateProject?id=${currentProjectId}&updateOption=service`,
+        {
+          method: "PATCH",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(services),
+        }
+      )
+        .then((res) => res.json())
+        .then((updateInfo) => {
+          // update successfully
+        });
+    }
   }, [services]);
-
-  useEffect(() => {
-    setServiceItems(services.services);
-  }, []);
 
   //   handle preview page
   const previewCode = () => {

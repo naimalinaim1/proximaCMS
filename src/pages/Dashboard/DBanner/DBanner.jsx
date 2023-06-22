@@ -42,7 +42,7 @@ const DBanner = () => {
         `http://localhost:3000/updateProject?id=${currentProjectId}&updateOption=banner`,
         {
           method: "PATCH",
-          headers: { "Content-type": "application/json" },
+          headers: { "content-type": "application/json" },
           body: JSON.stringify(banner),
         }
       )

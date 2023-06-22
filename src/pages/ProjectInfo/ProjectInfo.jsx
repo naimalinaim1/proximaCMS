@@ -1,13 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import {
-  getSaveProject,
-  saveCurrentProject,
-  saveProjectInfo,
-} from "./saveProjectInfo";
+import { saveCurrentProject } from "./saveProjectInfo";
 import { useNavigate } from "react-router-dom";
 import SingleProject from "./SingleProject";
 import { AuthContext } from "../../provider/AuthProvider";
-import Swal from "sweetalert2";
 
 const ProjectInfo = () => {
   const { user } = useContext(AuthContext);
@@ -38,12 +33,15 @@ const ProjectInfo = () => {
       // create a project
       fetch("http://localhost:3000/projects", {
         method: "POST",
-        headers: { "Content-type": "application/json" },
+        headers: { "content-type": "application/json" },
         body: JSON.stringify(projectInfo),
       })
         .then((res) => res.json())
         .then((createProject) => {
-          console.log(createProject);
+          if (createProject.insertedId) {
+            saveCurrentProject(createProject.insertedId);
+            navigate("/dashboard");
+          }
         });
     }
   };
